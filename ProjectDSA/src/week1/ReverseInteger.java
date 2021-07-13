@@ -14,11 +14,11 @@ public class ReverseInteger {
 		
 		if(a/10==0) return a;
 		
-		int remainder = a;
+		int quotient = a;
 		int sum = 0;
-		while(remainder>0){
-			sum = (sum*10)+(remainder%10);
-			remainder = remainder/10;
+		while(quotient>0){
+			sum = (sum*10)+(quotient%10);
+			quotient = quotient/10;
 		}
 		
 		return sum;
@@ -45,7 +45,9 @@ public class ReverseInteger {
 		
 		ReverseInteger reverse = new ReverseInteger();
 		
-		System.out.println(reverse.reverseInteger(123));
+		int a = 000123;
+		System.out.println(a);
+		System.out.println(reverse.reverseInteger(a));
 		
 		}
 

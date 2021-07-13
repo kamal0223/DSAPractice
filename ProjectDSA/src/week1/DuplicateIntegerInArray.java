@@ -5,11 +5,12 @@ public class DuplicateIntegerInArray {
 	public int duplicateInteger(int[] array) {
 		
 		/*
-		 * 1. initialize an int for duplicate variable 2. initialize isduplicate boolean
-		 * variable to false 3. Traverse through the length of the array-1 and get
-		 * pointer i 4. For each pointer i, traverse through the length of the array 5.
-		 * if the array in index i and its next index are equal 6. Then set isduplicate
-		 * boolean to true and return the value of that index
+		 * 1. initialize an int for duplicate variable 
+		 * 2. initialize isduplicate boolean variable to false 
+		 * 3. Traverse through the length of the array-1 and get pointer i 
+		 * 4. For each pointer i, traverse through the length of the array 
+		 * 5. if the array in index i and its next index are equal 
+		 * 6. Then set isduplicate boolean to true and return the value of that index
 		 */
 		
 		int duplicate = 0;     //space complex o(1)
@@ -33,7 +34,7 @@ public class DuplicateIntegerInArray {
 
 	public static void main(String[] args) {
 		/*
-		 * 1. did I understand the problem Yes 
+		 * 1.Did I understand the problem Yes
 		 * 2. What is the input for the problem
 		 * input t1-> int[] {2,4,2,8,3}
 		 * 3. what is the output for the problem 
