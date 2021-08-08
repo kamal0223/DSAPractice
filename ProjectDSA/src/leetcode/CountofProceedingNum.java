@@ -103,6 +103,8 @@ public class CountofProceedingNum {
 		 * 		increment left pointer and decrement right
 		 * return counter
 		
+		time complexity - O(n/2)
+		space complexity - O(1)
 		*/
 		private int usingTwoPointer(int[] input) {
 

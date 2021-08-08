@@ -99,6 +99,8 @@ public class DuplicateFinder {
 	 *  else decrement the right pointer
 		When no match is found then loop ends
 	 *at the end of method return false
+	 *time complexity = O(n logn)
+	 *space complexity = O(1)
 	 */
 	private boolean usingTwoPointer(int[] input) throws Exception {
 

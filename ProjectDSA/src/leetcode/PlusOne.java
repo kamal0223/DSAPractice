@@ -64,25 +64,25 @@ You may assume the integer does not contain any leading zero, except the number 
 
 public class PlusOne {
 	
-	//@Test
+	@Test
 	public void test1() throws Exception {
 		int[] input = {1,2,3};
 		int[] output = {1,2,4};
-		Assert.assertEquals(true, Arrays.equals(new int[] {1,2,4}, simpleTehnique(input)));
+		Assert.assertEquals(true, Arrays.equals(new int[] {1,2,4}, usingStringConversion(input)));
 	}
 	
 	@Test
 	public void test2() throws Exception {
 		int[] input = {4,3,9,9};
 		int[] output = {4,4,0,0};
-		Assert.assertEquals(true, Arrays.equals(new int[] {4,3,3,0}, simpleTehnique(input)));
+		Assert.assertEquals(true, Arrays.equals(new int[] {4,4,0,0}, usingStringConversion(input)));
 	}
 	
-	//@Test
+	@Test
 	public void test3() throws Exception {
 		int[] input = {0};
 		int[] output = {1};
-		Assert.assertEquals(true, Arrays.equals(new int[] {1}, simpleTehnique(input)));
+		Assert.assertEquals(true, Arrays.equals(new int[] {1}, usingStringConversion(input)));
 	}
 	
 	/*
@@ -94,24 +94,23 @@ public class PlusOne {
 	 * return input array
 	*/
 	
-	private int[] simpleTehnique(int[] input) {
-		
+	/*
+	 * initialize sum = 0
+	 * convert the int array to integer by traversing through it to the lenght of array
+	 * multiple the sum to 10 and add this sum to the element
+	 * Now add 1 to the integer
+	 * convert to string
+	 * create an output array of size of string
+	 * traverse through the length of string
+	 * add each element to corresponding index of output array
+	 * 
+	 * 
+	 * 		sum = sum*10;
+	 * 		sum = sum+intput[i]
 	
-		/*
-		 * initialize sum = 0
-		 * convert the int array to integer by traversing through it to the lenght of array
-		 * multiple the sum to 10 and add this sum to the element
-		 * Now add 1 to the integer
-		 * convert to string
-		 * create an output array of size of string
-		 * traverse through the length of string
-		 * add each element to corresponding index of output array
-		 * 
-		 * 
-		 * 		sum = sum*10;
-		 * 		sum = sum+intput[i]
-		
-		*/	
+	*/	
+	
+	private int[] usingStringConversion(int[] input) {
 		
 		int sum = 0;
 		for(int i = 0;i<input.length;i++) {
@@ -121,9 +120,9 @@ public class PlusOne {
 		String str = Integer.toString(sum);    // time complexity O(n) | space complexity O(n*m)
 		int[] output = new int[str.length()];
 		for(int j = 0;j<str.length();j++) {
-			output[j] = str.charAt(j);
+			output[j] = Integer.parseInt(Character.toString(str.charAt(j)));
 		}
-		
+		System.out.println(Arrays.toString(output));
 		return output;
 		
 		
@@ -136,14 +135,5 @@ public class PlusOne {
 		 * System.out.println(Arrays.toString(input)); return input;
 		 */
 	}
-	
-	/*
-	 * int[] temp = {1,0}; //String str =
-	 * toString().valueOf(input[input.length-1]+1); int left = input.length-1, right
-	 * = temp.length-1;
-	 * 
-	 * while(right<=0) { input[left] = input[left]+temp[right]; left--; right--; } }
-	 */
-
 
 }
