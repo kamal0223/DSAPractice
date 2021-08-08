@@ -66,9 +66,6 @@ public class MergeTwoLinkedList {
        while(node!=null) {
     	   prevNode = node.next;  //2 3 4
     	   currentNode.next = nextNode;  //null
-    	   
-    	   
-    	   
        }
     }
 

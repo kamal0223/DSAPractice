@@ -1,5 +1,7 @@
 package binarysearch;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 
 import junit.framework.Assert;
@@ -23,7 +25,7 @@ public class ProductOfTwoDistinct {
 	public void test1() {
 		int[] input = {1,2,3,4};
 		int target = 4;
-		Assert.assertEquals(3, usingBruteForce(input, target));
+		Assert.assertEquals(3, usingBinarySearch(input, target));
 		
 	}
 	
@@ -31,7 +33,7 @@ public class ProductOfTwoDistinct {
 	public void test2() {
 		int[] input = {6,2,3,1,4,3};
 		int target = 10;
-		Assert.assertEquals(12, usingBruteForce(input, target));
+		Assert.assertEquals(12, usingBinarySearch(input, target));
 		
 	}
 	
@@ -39,8 +41,14 @@ public class ProductOfTwoDistinct {
 	public void test3() {
 		int[] input = {2,2,2,2};
 		int target = 4;
-		Assert.assertEquals(-1, usingBruteForce(input, target));
-		
+		Assert.assertEquals(-1, usingBinarySearch(input, target));
+	}
+	
+	@Test
+	public void test4() {
+		int[] input = {};
+		int target = 4;
+		Assert.assertEquals(-1, usingBinarySearch(input, target));
 	}
 	
 	/*
@@ -59,26 +67,62 @@ case3: if product is greater than target
 	private int usingBruteForce(int[] input, int target) {
 		
 		
-		int previousDistance = 0;
-		int closestProduct = 0;
-		
+		int closestGreaterProd = Integer.MAX_VALUE;
+		int closestLowerProd = -1;
 		for (int i = 0; i < input.length; i++) {
-			for (int j = 0; j < input.length; j++) {
-				if(i!=j) {
-					int currentDistance = 0;
-					int currentProduct = -1; 
-					currentProduct = input[i]*input[j];
-					if(currentProduct == target) return currentProduct;
+			for (int j = i; j < input.length; j++) {
+				if(input[i]!=input[j]) {
+					int currentProduct = input[i]*input[j];
 					if(currentProduct<target) {
-						targ
-						if(previousDistance)
+						closestLowerProd = Integer.max(closestLowerProd, currentProduct);
 					}
-					
-				}
+					if(currentProduct>target) {
+						closestGreaterProd = Integer.min(closestGreaterProd, currentProduct);
+						}
+					}
+			}
+		}
+		//find the difference between target and closestLowerProd
+		//find the diff between target and closestGreaterProd
+		//which ever diff is small retrun that prod
+		if(target-closestLowerProd > closestGreaterProd-target) return closestGreaterProd;
+		else return closestLowerProd;
+	}
+	private int usingBinarySearch(int[] input, int target) {
+		//sort the array 
+		/*
+		 * sort the array 
+		 * declare left at 0 and right at last element
+		 * declare previousDiff = max of integer
+		 * iterate till the left is less than right
+		 * product the element at left and right
+		 * check if product > target then move right--
+		 * check if product < target then move left++
+		 * find the difference of right-left
+		 * if diff is 0 then continue
+		 * if(diff<previousDiff) previousDiff = absDiff
+		 * return previousDiff
+		 */
+		Arrays.sort(input);
+		int left = 0, right = input.length-1;
+		int previousDiff = Integer.MAX_VALUE;
+		int closestNum = -1;
+		while (left<right) {
+			if(input[left]!=input[right]) {
+			int product  = input[left]*input[right];
+			if(product>=target) right--;
+			else left++;
+			int absDiff = Math.abs(product-target);
+			if(absDiff == 0) continue;
+			if(absDiff<previousDiff) {
+				closestNum = product;
+				previousDiff= absDiff;
+			}
+			}else {
+				right--;
 			}
 		}
 		
-		return null;
+		return closestNum;
 	}
-
 }
