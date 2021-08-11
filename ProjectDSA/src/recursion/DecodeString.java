@@ -12,7 +12,7 @@ public class DecodeString {
 	    @Test
 	    public void test1() {
 	        String s = "3[a]2[bc]";
-	        String output = "aaabcbcd";
+	        String output = "aaabcbc";
 	        System.out.println(decodeUsingRecursion(s));
 	    }
 
@@ -20,6 +20,7 @@ public class DecodeString {
 	    public void test2() {
 	        String s = "3[a2[c]]";
 	        			//3[acc]
+	        			//aaa
 	        String output = "accaccacc";
 	    	System.out.println(decodeUsingRecursion(s));
 	        
@@ -31,8 +32,8 @@ public class DecodeString {
 	 Check for number before opening bracket and iterate the number of times as digit and concatenate the substring
 		put the concatenated string at the index of opening bracket -1
 	    *
-	    *
-	    *
+	    *find the first closing bracket. loop backwards to find the associated opening
+	    *declare 
 	    * */
 	    private String decodeUsingRecursion(String s) {
 	        StringBuilder str = new StringBuilder(s);

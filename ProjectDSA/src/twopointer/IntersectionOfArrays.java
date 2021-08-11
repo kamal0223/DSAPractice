@@ -118,6 +118,9 @@ public class IntersectionOfArrays {
 
 		private int[] usingTwoPointer(int[] input1, int[] input2) {
 			//merge input1 and 2
+			//int[] input1 = {1,2,4,5};
+			//int[] input2 = {5,4,5};
+			
 			Arrays.sort(input1);
 			Arrays.sort(input2);
 			int[] output = new int[Math.min(input1.length, input2.length)];

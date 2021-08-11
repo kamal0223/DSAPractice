@@ -1,4 +1,4 @@
-package week3;
+package twopointer;
 
 import java.util.Arrays;
 
@@ -9,9 +9,6 @@ import org.junit.Test;
 Constraint: cannot use extra space
 eg : int[] input = {12, -90, -100, 15, 98, 99, -56, -2};
 		   expected output {12, -90, 15, -100, 98,-56,99,-2}*/
-
-/*Write a program to return the shortest substring having all the unique characters of the string
-Input: "abbcafcb" Output: "bcaf"*/
 
 /*Input: String input
 Output: String output
@@ -51,7 +48,7 @@ public class SortAlternativePositiveNegative {
 	 *  else swap left and right
 	 *  
 	 *  return input
-	
+		time complexity - O(2n) and space complexity - O(1)
 	
 	*/
 	
@@ -75,8 +72,8 @@ public class SortAlternativePositiveNegative {
 		right = input.length-1;
 		while(left<right) {
 			if(left%2 == 0) left++;
-			if(right%2 != 0) right--;
-			if(left%2 != 0 && right%2 == 0) {
+			else if(right%2 != 0) right--;
+			else {
 				int temp = input[left];
 				input[left++] = input[right];
 				input[right--] = temp;

@@ -1,4 +1,4 @@
-package week3;
+package slidingwindow;
 
 import org.junit.Assert;
 import org.junit.Test;

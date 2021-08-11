@@ -1,4 +1,4 @@
-package week3;
+package twopointer;
 
 import java.util.Arrays;
 
