@@ -68,13 +68,60 @@ public class MergeTwoLinkedList {
     	   currentNode.next = nextNode;  //null
        }
     }
+    
+    public Node mergeTwoList(Node l1, Node l2) {
+    	//compare the node values of l1 and l2 by iterating both the nodes till node is null
+        //iterating till both the nodes become null
+    	Node n = new Node();
+        Node newOne = n ;
+           while (l1!=null && l2!=null)
+           {  
+               if (l1.value>l2.value)
+               {
+                  newOne.next = l2;
+                   l2= l2.next;
+               }
+               else {
+                    newOne.next=l1;
+                   l1=l1.next;
+               }
+           newOne = newOne.next;     
+           }
+           if(l1 != null)
+               newOne.next = l1;
+           else if(l2 != null)
+               newOne.next = l2;
+        
+           return n.next;
+    }
+    
+    public Node mergeRecursively(Node l1, Node l2) {
+    	Node n = new Node();
+        Node newOne = n ;
+    	//base condition
+    	if(l1 == null) return l2;
+    	else if(l2 == null) return l1;
+    		
+    	 if (l1.value>=l2.value)
+         {
+            l2.next = mergeRecursively(l1, l2.next);
+            return l2;
+         }
+         else {
+        	 l1.next = mergeRecursively(l1.next, l2);
+             return l1;
+         }
+    }
 
     @Test
     public void test1() {
         Node head = addNode(1);
         head.next = addNode(2);
-        head.next.next = addNode(3);
-        head.next.next.next = addNode(4);
-        printAllNodes(head);
+        head.next.next = addNode(4);
+       
+        Node l2 = addNode(1);
+        l2.next = addNode(3);
+        l2.next.next = addNode(4);
+        printAllNodes(mergeRecursively(head, l2));
     }
 }
