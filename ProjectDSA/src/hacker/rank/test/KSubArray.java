@@ -45,6 +45,19 @@ public class KSubArray {
 	}
 	public long kSub(List<Integer> nums, int k) {
 
+		/*
+		 * declare sum = 0
+		 * declare long output to 0
+		 * declare a hashmap<integer, integer> to hold the remainder and its occurence
+		 * traverse the input list from 1 to last element
+		 * 	find the remainder using sum, initially it is 0. so adding to remainder 0 count
+		 * 	check if the remainder as key is present in map, if yes increment by 1
+		 * 	else if the remainder is not present then make a new entry count as 1
+		 * 	update sum by adding with the previous element starting from 0
+		 * 	update the remainder using this above sum
+		 * 	if the map contains the remainder then add 1 to output
+		
+		*/
 		// Cumulative Sum of each number in the list
 		int sum = 0;
 
