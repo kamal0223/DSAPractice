@@ -22,16 +22,16 @@ public class FizzBuzz {
 	@Test
 	public void test1() {
 		int input = 5;
-		Assert.assertTrue(Arrays.equals(new String[] {"1","2","Fizz","4","Buzz"}, fizzBuzz(input)));
+		Assert.assertTrue(Arrays.equals(new String[] {"1","2","Fizz","4","Buzz"}, fizzBuzzTwoPointer(input)));
 	}
 	
 	@Test
 	public void test2() {
 		int input = 1;
-		Assert.assertTrue(Arrays.equals(new String[] {"1"}, fizzBuzz(input)));
+		Assert.assertTrue(Arrays.equals(new String[] {"1"}, fizzBuzzTwoPointer(input)));
 	}
 
-	private String[] fizzBuzz(int input) {
+	private String[] fizzBuzzTwoPointer(int input) {
 		
 		//two pointers say left to 0 and right to lastelement
 		int left = 1, right = input;

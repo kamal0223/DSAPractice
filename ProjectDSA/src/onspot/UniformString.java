@@ -24,8 +24,8 @@ public class UniformString {
 	@Test
 	public void test1() {
 		String input = "abbccaadf";
-		int[] target = {4,2,5,3,7};
-		Assert.assertTrue(Arrays.equals(new String[] {"true","true","false","true","false"}, uniformString(input,target)));
+		int[] target = {4,2,5,3,7,6};
+		Assert.assertTrue(Arrays.equals(new String[] {"true","true","false","true","false","true"}, uniformString(input,target)));
 	}
 	
 	@Test
@@ -94,7 +94,7 @@ public class UniformString {
 			}
 		}
 		//get the last value from input string sum
-		hm.replace(sum, true);
+		//hm.replace(sum, true);
 		String[] output = new String[target.length];
 		for (int i = 0; i < target.length; i++) {
 			output[i] = String.valueOf(hm.get(target[i]));
