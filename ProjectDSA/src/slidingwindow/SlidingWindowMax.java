@@ -30,6 +30,9 @@ public class SlidingWindowMax {
 		int k = 2;
 		Assert.assertTrue(Arrays.equals(new int[] {4}, slidingWindow(nums, k)));
 	}
+	
+	//O(n*m) time complexity
+	//O(n) space complexity
 	private int[] slidingWindow(int[] nums, int k) {
 		//add the first k elements in arraylist by iterating till k
         //find max and add it to the nums at 0 index
