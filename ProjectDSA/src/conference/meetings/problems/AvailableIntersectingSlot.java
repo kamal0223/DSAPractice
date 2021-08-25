@@ -78,7 +78,11 @@ public class AvailableIntersectingSlot {
 					return output;
 				}else {
 					if(slot1[p1Pointer][1]>slot2[p2Pointer][1]) p2Pointer++;
-					else p1Pointer++;
+					else if(slot1[p1Pointer][1]<slot2[p2Pointer][1]) p1Pointer++;
+					else {
+						p1Pointer++;
+						p2Pointer++;
+					}
 				}
 			}
 		}
