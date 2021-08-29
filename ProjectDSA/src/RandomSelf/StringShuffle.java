@@ -1,10 +1,8 @@
 package RandomSelf;
-
-import java.util.Arrays;
-
 import org.junit.Test;
-
 import junit.framework.Assert;
+
+//1528. Shuffle String leetcode
 
 public class StringShuffle {
 
