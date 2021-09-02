@@ -1,6 +1,7 @@
-package week4;
+package stack;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -39,25 +40,25 @@ public class DailyTemperatures {
 	@Test
 	public void test1() {
 		int[] input = {73,74,75,71,69,72,76,73};
-		Assert.assertTrue(Arrays.equals(new int[] {1,1,4,2,1,1,0,0}, bruteForce(input)));
+		Assert.assertTrue(Arrays.equals(new int[] {1,1,4,2,1,1,0,0}, usingStack(input)));
 	}
 	
 	@Test
 	public void test2() {
 		int[] input = {30,30,30,30};
-		Assert.assertTrue(Arrays.equals(new int[] {0,0,0,0}, bruteForce(input)));
+		Assert.assertTrue(Arrays.equals(new int[] {0,0,0,0}, usingStack(input)));
 	}
 	
 	@Test
 	public void test3() {
 		int[] input = {40,38,40,38,38};
-		Assert.assertTrue(Arrays.equals(new int[] {0,1,0,0,0}, bruteForce(input)));
+		Assert.assertTrue(Arrays.equals(new int[] {0,1,0,0,0}, usingStack(input)));
 	}
 	
 	@Test
 	public void test4() {
 		int[] input = {60};
-		Assert.assertTrue(Arrays.equals(new int[] {0}, bruteForce(input)));
+		Assert.assertTrue(Arrays.equals(new int[] {0}, usingStack(input)));
 	}
 
 	private int[] bruteForce(int[] temperatures) {
@@ -116,12 +117,38 @@ public class DailyTemperatures {
 		
 	}
 	
+	/*
+declare a stack of integers
+declare an output array of int
+iterate the array from left to right
+if the array is empty
+   push the element index 
+if array not empty
+   check curr element > indexStack peek value at input
+     Yes-> while loop till curr ele > peek_value
+ 	   pop the stack, curr element is larger than value at stackindex
+	   find the difference between current index-popped Indexand 
+	   add to output array at index of pop value
+	   check if stack is empty, if yes then break loop
+     No-> do nothing
+   push the index to stack
+   
+return output array
+	 */
+	
 	private int[] usingStack(int[] temperatures) {
-		//using stack
-		
-		
-		
-		return temperatures;
+		Stack<Integer> stack = new Stack<Integer>();
+		int[] output = new int[temperatures.length];
+		for(int i = 0;i<temperatures.length;i++){
+			while(!stack.isEmpty() && temperatures[i] > temperatures[stack.peek()]){
+				int poppedValue = stack.pop();
+				output[poppedValue] = i - poppedValue;
+				if(stack.isEmpty()) break;
+			}
+
+			stack.push(i);
+		}
+		return output;
 		
 	}
 

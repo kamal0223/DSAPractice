@@ -1,11 +1,13 @@
-package week5;
+package slidingwindow;
 
 import java.util.ArrayDeque;
+import java.util.TreeSet;
 
 import org.junit.Test;
 
 import junit.framework.Assert;
 
+//https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/
 public class LongSubarrayDiffWithLimit {
 	
 	@Test
@@ -13,7 +15,7 @@ public class LongSubarrayDiffWithLimit {
 		int[] input = {10,1,2,4,7,2};
 		int limit = 5;
 		int output = 4;
-		Assert.assertEquals(4, slidingWindow(input,limit));
+		Assert.assertEquals(4, longestSubarray(input,limit));
 	}
 	
 	@Test
@@ -58,8 +60,7 @@ public class LongSubarrayDiffWithLimit {
 	private int slidingWindow(int[] input, int limit) {
 		
 		int left = 0, right=0;
-		int max = Integer.MIN_VALUE;
-		int min = Integer.MAX_VALUE;
+		int min = input[left], max = input[left];
 		int previousLong = 0;
 		
 		while(right<input.length) {
@@ -79,14 +80,19 @@ public class LongSubarrayDiffWithLimit {
 		return previousLong;
 	}
 		
-	private int usingQueue(int[] input, int limit) {
-		
-		int left = 0, right=0;
-		ArrayDeque<Integer> queue = new ArrayDeque<>();
-		
-		
-		return limit;
-		
-	}
+	public int longestSubarray(int[] nums, int limit) {
+        int left = 0;
+        TreeSet<Integer> set = new TreeSet<>((a, b) -> nums[a] == nums[b] ? a - b : nums[a] - nums[b]);
+        set.add(0);
+        int res = 1;
+        for (int right = 1; right < nums.length; right++) {
+            set.add(right);
+            while (nums[set.last()] - nums[set.first()] > limit) {
+                set.remove(left++);
+            }
+            res = Math.max(res, right - left + 1);
+        }
+        return res;
+    }
 
 }
