@@ -71,18 +71,15 @@ public class DailyTemperatures {
         //time complexity - O(n^2) and space - O(n)
         
         int[] answer = new int[temperatures.length];
-        int loopCounter = 0;
         for(int i = 0;i<temperatures.length-1;i++){
             for(int j = i+1 ;j<temperatures.length;j++){
                 if(temperatures[i]<temperatures[j]){
                     answer[i] = j-i;
-                    loopCounter++;
                     break;
                 }
             }
             
         }
-        System.out.println("number of iterations"+loopCounter);
         answer[temperatures.length-1] = 0;
         return answer;
 	}
