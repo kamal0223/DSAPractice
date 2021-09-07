@@ -23,7 +23,7 @@ Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
 Output: [1,2,2,3,5,6]
 
 */
-
+//https://leetcode.com/problems/merge-sorted-array/
 /* Problem Solving Techniques :
  * 1. Do you understand the question? - Yes
  * 		Yes - Go to next step
@@ -111,17 +111,6 @@ public class SortTwoArrays {
 		
 	
 	private int[] usingBruteForce(int[] input1, int[] input2, int m, int n) {
-		
-		/*
-		if(m == 0) nums1 = nums2;
-	        int i = m-1, j = n-1, k = m+n-1;
-	        while(n != 0 && m !=0 && j>=0 && i>=0){
-	            if(nums1[i]<nums2[j]) nums1[k--] = nums2[j--];
-	            else nums1[k--] = nums1[i--];
-	        }
-		
-		 */
-		
 		for(int i = 0;i<input2.length;i++){
 	          input1[m++] = input2[i];
 	      }
@@ -129,11 +118,16 @@ public class SortTwoArrays {
 	        return input1;
 		
 	}
-	
+	private void usingTwoPointer1(int[] nums1, int[] nums2, int m, int n) {
+		if(m == 0) nums1 = nums2;
+		int i = m-1, j = n-1, k = m+n-1;
+		while(n != 0 && m !=0 && j>=0 && i>=0){
+			if(nums1[i]<nums2[j]) nums1[k--] = nums2[j--];
+			else nums1[k--] = nums1[i--];
+		}
+	}
 
-	
 	private void usingTwoPointer(int[] nums1, int[] nums2, int m, int n) {
-		  //if(m == 0) nums1 = nums2;
 	        int i = m-1, j = n-1, k = m+n-1;
 	        while(j>=0 || i>=0){
 	        	int num1 = i >= 0 ? nums1[i] : Integer.MIN_VALUE;
@@ -148,6 +142,5 @@ public class SortTwoArrays {
 	            }
 	            k--;
 	        }
-		  //System.out.println(Arrays.toString(nums1));
-	}
+		}
 }
