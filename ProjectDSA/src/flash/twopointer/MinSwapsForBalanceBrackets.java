@@ -1,10 +1,12 @@
-package flash.twopointers;
+package flash.twopointer;
 
 import java.util.Stack;
 
 import org.junit.Test;
 
 import junit.framework.Assert;
+
+//https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/
 
 public class MinSwapsForBalanceBrackets {
 

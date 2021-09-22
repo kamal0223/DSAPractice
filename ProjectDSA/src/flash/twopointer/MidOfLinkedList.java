@@ -1,9 +1,10 @@
-package flash.twopointers;
+package flash.twopointer;
 
 import org.junit.Test;
 
 import LinkedList.CountNodeLinkedList.ListNode;
 
+//https://leetcode.com/problems/middle-of-the-linked-list/
 public class MidOfLinkedList {
 	
 	@Test
