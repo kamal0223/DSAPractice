@@ -4,7 +4,8 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 
-public class MaxOnesByKFlips {
+//https://leetcode.com/problems/max-consecutive-ones-iii/
+public class MaxOnesByKFlips_1004 {
 	
 	@Test
 	public void test1() {

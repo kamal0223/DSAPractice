@@ -6,7 +6,7 @@ import java.util.Set;
 import org.junit.Test;
 
 //https://leetcode.com/problems/longest-nice-substring/
-public class LongestNiceString {
+public class LongestNiceString_1763 {
 	
 	@Test
 	public void test1() {
