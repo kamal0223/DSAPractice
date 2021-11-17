@@ -10,7 +10,7 @@ import org.junit.rules.ExpectedException;
 
 /*Given an array arr of positive integers sorted in a strictly increasing order, and an integer k. 
 Find the kth positive integer that is missing from this array.*/
-
+//https://leetcode.com/problems/kth-missing-positive-number/
 /*Input: int[] input, int k
 Output: int output
 constraints: time complexity should be O(logn)

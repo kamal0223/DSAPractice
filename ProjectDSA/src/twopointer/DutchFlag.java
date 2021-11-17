@@ -1,6 +1,13 @@
 package twopointer;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -133,5 +140,42 @@ public class DutchFlag {
 		
 		return input;
 	}
+	
+	 public void sortColors(int[] nums) {
+	        //using dutch flag
+	        //declare 3 pointers left at 0 mid at 0 and high at end
+	        String s = "";
+	        String[] strs = {"ad","dae"};
+	        Map<Character,Integer> baseMap = new HashMap<Character,Integer>();
+	        Map<Character,Integer> eachMap = new HashMap<Character,Integer>();
+	        Collection<Integer> values = baseMap.values();
+	        List<Integer> li = new ArrayList<Integer>(values);
+	        baseMap.equals(eachMap);
+            for(Character c:strs[0].toCharArray()){
+                baseMap.put(c, baseMap.getOrDefault(c,0)+1);
+            }
+            List<String> innerList = new ArrayList<String>();
+            innerList.add("");
+            Set<Integer> set = new HashSet<Integer>();
+            set.add(1);
+	        int low = 0, mid = 0, high = nums.length-1;
+	        while(mid<=high){
+	            //if mid is 0
+	            if(nums[mid] == 0) {
+	                //swap low and mid and increment low and mid
+	                int temp = nums[mid];
+	                nums[mid++] = nums[low];
+	                nums[low++] = temp;
+	            }else if(nums[mid] == 1){
+	                //just increment mid
+	                mid++;
+	            }else {
+	                //swap mid and high and decrement high
+	                int temp = nums[mid];
+	                nums[mid] = nums[high];
+	                nums[high--] = temp;
+	            }
+	        }
+	    }
 
 }
