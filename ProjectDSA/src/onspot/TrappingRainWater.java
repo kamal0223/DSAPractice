@@ -8,13 +8,13 @@ import junit.framework.Assert;
 
 //https://leetcode.com/problems/trapping-rain-water/
 public class TrappingRainWater {
-	
+
 	@Test
 	public void test1() {
 		int[] height = {4,2,0,3,2,5};
 		Assert.assertEquals(9, trapRainUsingStack(height));
 	}
-	
+
 	@Test
 	public void test2() {
 		int[] height = {6,4,2,0,7,2,4};
@@ -26,13 +26,39 @@ public class TrappingRainWater {
 		int[] height = {0,5};
 		Assert.assertEquals(0, trapRainUsingStack(height));
 	}
-	
+
 	@Test
 	public void test4() {
 		int[] height = {1,2,3,0,0};
 		Assert.assertEquals(0, trapRainUsingStack(height));
 	}
 
+	@Test
+	public void test5() {
+		int[] height = {3,0,0,3,0,0,3};
+		Assert.assertEquals(12, trap(height));
+	}
+
+	public int trap(int[] height) {
+		if (height == null || height.length < 2) return 0;
+
+		Stack<Integer> stack = new Stack<>();
+		int water = 0, i = 0;
+		while (i < height.length) {
+			if (stack.isEmpty() || height[i] <= height[stack.peek()]) {
+				stack.push(i++);
+			} else {
+				int pre = stack.pop();
+				if (!stack.isEmpty()) {
+					// find the smaller height between the two sides
+					int minHeight = Math.min(height[stack.peek()], height[i]);
+					// calculate the area
+					water += (minHeight - height[pre]) * (i - stack.peek() - 1);
+				}
+			}
+		}
+		return water;
+	}
 	/*
 	 *declare 2 pointers left and right at 0
 	  declare a int of sum
@@ -63,7 +89,7 @@ public class TrappingRainWater {
 			if(right!=height.length-1) {
 				if(height[right+1]>height[right]) right++;
 			}
-			
+
 			int minValue = Math.min(height[left], height[right]);
 			left++;
 			while(left<right) {
@@ -73,7 +99,7 @@ public class TrappingRainWater {
 		}
 		return sum;
 	}
-	
+
 	/*
 	 * peak is peak when it is greater than i-1 
 	 * AND 
@@ -82,7 +108,7 @@ public class TrappingRainWater {
 	 * OR
 	 * it is greater than nextMax
 	 */
-	
+
 	private int trapRainUsingStack(int[] height) {
 		int sum = 0;
 		Stack<Integer> stack = new Stack<Integer>();
@@ -101,12 +127,12 @@ public class TrappingRainWater {
 						nextMax = height[j];
 						break;
 					}
-					}
+				}
 				if(height[i]>prevMax || height[i]>nextMax){ //if no next max for 
 					stack.push(height[i]);
 					prevMax = height[i];
 				}
-				
+
 			}
 		}
 		//for last height
@@ -114,7 +140,7 @@ public class TrappingRainWater {
 			stack.push(height.length-1);
 			prevMax = height.length-1;
 		}
-		
+
 		//iterate the stack
 		while(!stack.isEmpty()) {
 			//pop the stack 
@@ -125,6 +151,6 @@ public class TrappingRainWater {
 			}
 		}
 		return sum;
-		
+
 	}
 }

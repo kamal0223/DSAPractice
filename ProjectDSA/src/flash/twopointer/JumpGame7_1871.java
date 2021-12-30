@@ -1,4 +1,4 @@
-package flash.twopointers;
+package flash.twopointer;
 
 import java.awt.image.IndexColorModel;
 import java.util.ArrayDeque;

@@ -79,7 +79,7 @@ public class SortTwoArrays {
 		int[] input1 = {1,2,3,0,0,0};
 		int[] input2 = {2,5,6};
 		int m = 3, n = 3;
-		usingTwoPointer(input1, input2, m, n);
+		usingTwoPointer1(input1, input2, m, n);
 	}
 
 	@Test
@@ -87,7 +87,7 @@ public class SortTwoArrays {
 		int[] input1 = {0};
 		int[] input2 = {1};
 		int m = 0, n = 1;
-		usingTwoPointer(input1, input2, m, n);
+		usingTwoPointer1(input1, input2, m, n);
 	}
 	
 	@Test
@@ -96,7 +96,7 @@ public class SortTwoArrays {
 		int[] input1 = {1};
 		int[] input2 = {0};
 		int m = 1, n = 0;
-		usingTwoPointer(input1, input2, m, n);
+		usingTwoPointer1(input1, input2, m, n);
 	}
 	
 	
@@ -125,10 +125,12 @@ public class SortTwoArrays {
 			if(nums1[i]<nums2[j]) nums1[k--] = nums2[j--];
 			else nums1[k--] = nums1[i--];
 		}
+		System.out.println(Arrays.toString(nums1));
 	}
 
 	private void usingTwoPointer(int[] nums1, int[] nums2, int m, int n) {
 	        int i = m-1, j = n-1, k = m+n-1;
+	        Arrays.sort(nums1);
 	        while(j>=0 || i>=0){
 	        	int num1 = i >= 0 ? nums1[i] : Integer.MIN_VALUE;
 	            int num2 = j >= 0 ? nums2[j] : Integer.MIN_VALUE;

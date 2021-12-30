@@ -86,7 +86,9 @@ public class FindNumberOfOnes {
 		int left = 0, right = input.length-1;
 		while(left<=right) {
 			if(input[left] == 0) left++;
+			else return input.length-left;
 			if(input[right] == 1) right--;
+			else return input.length-right-1;
 		}
 		
 		return input.length-right-1;

@@ -1,5 +1,9 @@
 package stack;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
+
 import org.junit.Test;
 
 import junit.framework.Assert;
@@ -71,8 +75,17 @@ public class FindingMissingBracketCount {
 	
 	*/
 	private Object usingStack(String input) {
-		// TODO Auto-generated method stub
-		return null;
+	
+		Stack<Character> st = new Stack<Character>();
+		Map<Character,Character> hm = new HashMap<Character,Character>();
+		hm.put(')', '(');
+		hm.put('}', '{');
+		hm.put(']', '[');
+		for (int i = 0; i < input.length(); i++) {
+			//if it is not a close bracket then push it
+			if(hm.containsKey(input.charAt(i)) && !st.isEmpty() && st.peek() == hm.get(input.charAt(i))) st.pop();
+			else st.push(input.charAt(i));
+		}
+		return st.size();
 	}
-
 }

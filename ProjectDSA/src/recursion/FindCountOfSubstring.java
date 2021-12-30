@@ -49,5 +49,8 @@ public class FindCountOfSubstring {
 		//findCount(st1.replacefirst(str2,""))
 		//on every replace make count 1 incremented
 		return 1+findCount(str1.replaceFirst(str2, ""), str2);
+		
+		
+		//fucntion=>return 1+stack2(replacedStr1)=>return 1+1+stack3(replacedStr1)=> return 1+1+stack4(replacedStr) 
 	}
 }

@@ -74,6 +74,7 @@ public class findIfPresentInRange {
 	        for(int i=1; i<input.length-k; i++) {
 	            set.remove(input[i-1]); // Deleting previous window element at the index(i-1)
 	            if(!set.add(input[i+k])) return true;
+	            set.removeIf(null)
 	        }
 	        return false;
 	    }

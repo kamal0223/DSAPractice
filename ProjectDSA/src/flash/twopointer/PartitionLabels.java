@@ -1,4 +1,4 @@
-package flash.twopointers;
+package flash.twopointer;
 
 import java.util.ArrayList;
 import java.util.Arrays;

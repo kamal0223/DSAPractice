@@ -81,7 +81,9 @@ public class BinarySearchTree {
 		tree.addNode(node, 22);
 		tree.addNode(node, 15);
 		tree.addNode(node, 6);
-		tree.inOrder(node);
+		tree.preOrder(node);
+		System.out.println("post order");
+		tree.postOrder(node);
 		//tree.postOrder(node);
 		//tree.find(15, node);
 		

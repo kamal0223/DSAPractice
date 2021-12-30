@@ -91,7 +91,7 @@ public class DailyTemperatures {
 		//if the temperature at left > = right then increment right pointer
 		//else business logic found, add the distance right-left to array answer of left and move left++ and right = left+1
 		//return answer
-		
+		/*
 		int loopCounter = 0;
 		int[] answer = new int[temperatures.length];
 		int left = 0, right=1;
@@ -111,6 +111,18 @@ public class DailyTemperatures {
 		
 		System.out.println("number of loops "+loopCounter);
 		return answer;
+		*/
+		
+		 int[] output = new int[temperatures.length];
+	        for(int i = 0;i<temperatures.length-1;i++){
+	            int j = i+1;
+	            while(j<=temperatures.length-1 && temperatures[j]<=temperatures[i]){
+	                j++;
+	            }
+	            if(j>temperatures.length-1) output[i] = 0;
+	            else output[i] = j-i;
+	        }
+	        return output;
 		
 	}
 	

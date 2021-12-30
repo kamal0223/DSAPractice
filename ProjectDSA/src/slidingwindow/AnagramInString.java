@@ -3,7 +3,9 @@ package slidingwindow;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -76,20 +78,22 @@ public class AnagramInString {
 	@Test
 	public void test1() {
 		String input = "cbaebabacd", p = "abc";
-		
-		Assert.assertTrue(Arrays.equals(new int[] {0,6}, usingSlidingWindow(input, p)));
+		findAnagrams(input, p);
+		//Assert.assertTrue(Arrays.equals(new int[] {0,6}, usingSlidingWindow(input, p)));
 	}
 	
 	@Test
 	public void test2() {
 		String input = "cbaebabacd", p = "ab";
-		Assert.assertTrue(Arrays.equals(new int[] {1,5,6}, usingSlidingWindow(input, p)));
+		findAnagrams(input, p);
+		//Assert.assertTrue(Arrays.equals(new int[] {1,5,6}, usingSlidingWindow(input, p)));
 	}
 	
 	@Test
 	public void test3() {
 		String input = "c", p = "a";
-		Assert.assertTrue(Arrays.equals(new int[] {}, usingSlidingWindow(input, p)));
+		findAnagrams(input, p);
+		//Assert.assertTrue(Arrays.equals(new int[] {}, usingSlidingWindow(input, p)));
 	}
 
 	/*
@@ -131,6 +135,31 @@ public class AnagramInString {
 		
 		return null;
 	}
+	
+	public void findAnagrams(String s, String p) {
+        Map<Character, Integer> pMap = new HashMap<Character, Integer>();
+        Map<Character, Integer> sMap = new HashMap<Character, Integer>();
+        
+        for(int i = 0;i<p.length();i++){
+            pMap.put(p.charAt(i), pMap.getOrDefault(p.charAt(i),0)+1);
+        }
+        
+        int left = 0;
+        List<Integer> ali = new ArrayList<Integer>();
+        for(int right = 0;right<s.length();right++){
+            sMap.put(s.charAt(right), sMap.getOrDefault(s.charAt(right),0)+1);
+            //stop when the window size is greater than 
+            if(sMap.size() >= p.length()){
+                if(sMap.equals(pMap)) ali.add(left);
+                sMap.put(s.charAt(left),pMap.getOrDefault(s.charAt(left),0)-1);
+                if(sMap.get(s.charAt(left)) <= 0){
+                    sMap.remove(s.charAt(left));
+                }
+                left++;
+            }
+        }
+        System.out.println(ali);
+    }
 	
 	
 

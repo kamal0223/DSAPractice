@@ -2,7 +2,6 @@ package onspot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,21 +19,21 @@ public class ListOfAnagrams {
 	@Test
 	public void test1() {
 		String[] input = {"eat","tea","tan","ate","nat","bat"}; 
-		List<List<String>> output = listOfAnagrams(input);
+		List<List<String>> output = groupAnagrams(input);
 		System.out.println(output.toString());
 	}
 	
 	@Test
 	public void test2() {
 		String[] input = {""}; 
-		List<List<String>> output = listOfAnagrams(input);
+		List<List<String>> output = groupAnagrams(input);
 		System.out.println(output.toString());
 	}
 	
 	@Test
 	public void test3() {
 		String[] input = {"a"}; 
-		List<List<String>> output = listOfAnagrams(input);
+		List<List<String>> output = groupAnagrams(input);
 		System.out.println(output.toString());
 	}
 
@@ -56,15 +55,17 @@ public class ListOfAnagrams {
 			for (int j = 0; j < input[i].length(); j++) {
 				ascii[input[i].charAt(j)-'a']++;
 			}
+			
 			//convert the ascii array to string
 			String asciiStr = Arrays.toString(ascii);
 			//check if the ascii is present in map keys
 			if(hm.containsKey(asciiStr)) {
 				//as the ascii is already present get the value and add the string to the value
-				List<String> list = hm.get(asciiStr);
-				list.add(input[i]);
+				hm.get(asciiStr).add(input[i]);
+				//List<String> list = hm.get(asciiStr);
+				//list.add(input[i]);
 				//replace the list with this list
-				hm.put(asciiStr, list);
+				//hm.put(asciiStr, list);
 			}else {
 				//as the ascii is not present in map add a new entry
 				List<String> ali = new ArrayList<String>();
@@ -72,9 +73,38 @@ public class ListOfAnagrams {
 				hm.put(asciiStr,ali);
 			}
 		}
-		List<List<String>> listOfList = new ArrayList<List<String>>();
-		listOfList.addAll(hm.values());
+		List<List<String>> listOfList = new ArrayList<List<String>>(hm.values());
 		return listOfList;
 	}
+	
+	 public List<List<String>> groupAnagrams(String[] strs) {
+	       //declare a map of string, List<String>
+	       //traverse the string from left to right
+	        // create an ascii array of size 26 
+	        // add the occurence in the ascii array
+	        // check if the asciiarray is in map
+	        // yes->get the value of the map which is list<string> and add to this list
+	        // no-> add an entry in the map and create a list<String> and add to this list
+	        
+	        Map<String,List<String>> map = new HashMap<String,List<String>>();
+	        for(int i = 0;i<strs.length;i++){
+	            int[]  asciiArray = new int[26];
+	            for(int j = 0;j<strs[i].length();j++){
+	                asciiArray[strs[i].charAt(j)-'a']++;
+	            }
+	            //check if the asciiarray is in map
+	            if(map.containsKey(Arrays.toString(asciiArray))){
+	                //as the asciiArray is already present in map, get the value and add the string to it
+	                
+	                map.get(Arrays.toString(asciiArray)).add(strs[i]);
+	            }else {
+	                List<String> li = new ArrayList<String>();
+	                li.add(strs[i]);
+	                map.put(Arrays.toString(asciiArray),li);
+	            }
+	        }
+
+	        return new ArrayList<List<String>>(map.values());
+	    }
 
 }

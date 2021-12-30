@@ -5,6 +5,19 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
+/*Swiggy SDE online round
+
+froggie wants to leap across an integer sequence with some rules:
+1. can start his journey from any element of the sequence
+2. he can only jump in the forward direction
+3. He can only jump to an integer that is strictly smaller than the int he is currently at
+
+Froggie wants to know what is the maximum amount of jumps that he can make.
+
+input: array of integers
+output: integer - max number of leaps that frog can make with conditions
+ */
+
 public class FrogLeapSwiggy {
 	
 	@Test
@@ -29,7 +42,7 @@ public class FrogLeapSwiggy {
 		
 		int[] data = new int[nums.length];
         Arrays.fill(data, 0);
-        
+        Integer.MIN_VALUE
         for (int i = 1; i < nums.length; i++) {
             for (int j = 0; j < i; j++) {
                 if (nums[i] < nums[j])

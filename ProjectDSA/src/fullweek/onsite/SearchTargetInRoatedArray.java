@@ -1,4 +1,4 @@
-package testleaf.onsite;
+package fullweek.onsite;
 
 import org.junit.Assert;
 import org.junit.Test;

@@ -19,12 +19,12 @@ Approaches Known:binary search
 
 public class NextBiggestChar {
 	
-	
+	//a b c d e f g h
 	@Test
 	public void test1() {
-		char[] input = {'b','d','h'};
-		char target = 'e';
-		Assert.assertEquals('h', usingBinarySearch(input, target));
+		char[] input = {'b','h','d'};
+		char target = 'b';
+		Assert.assertEquals('d', usingBinarySearch(input, target));
 	}
 	@Test
 	

@@ -51,11 +51,9 @@ public class DesignAddSearch {
         //character by character if . is found in input then move to next char
         //or if any other letter is found check both char are matching
         //get words from arraylis
-  
     	if(word.length()>0 && ali.size() == 0) return false;
         char[] charArray = word.toCharArray();
         for(String each:ali){
-            if(each.length()!=word.length()) continue;
         for(int i = 0;i<charArray.length;i++){
             if(each.charAt(i) != charArray[i] && charArray[i] != '.')
             	//when last element comes then return false else for other elements break

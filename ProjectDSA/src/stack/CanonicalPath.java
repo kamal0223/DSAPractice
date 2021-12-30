@@ -1,5 +1,7 @@
 package stack;
 
+import java.util.Stack;
+
 import org.junit.Test;
 
 import junit.framework.Assert;
@@ -23,7 +25,7 @@ TestData set: Positive
 			  Negative
 			  Edge
 Approaches Known: stack
-*/
+ */
 
 public class CanonicalPath {
 
@@ -32,21 +34,21 @@ public class CanonicalPath {
 		String input = "/home/";
 		Assert.assertTrue(usingStack(input).equals("/home"));
 	}
-	
+
 	@Test
 	public void test2() {
-		String input = "/home//foo/";
-		Assert.assertTrue(usingStack(input).equals("/home/foo"));
+		String input = "/a/../../b/../c//.//";
+		Assert.assertTrue(usingStack(input).equals("/c"));
 	}
-	
-	
+
+
 
 	@Test
 	public void test3() {
 		String input = "/a/./b/../../c/";
 		Assert.assertTrue(usingStack(input).equals("/c"));
 	}
-	
+
 	/*
 	 * split the string based on '/' and get a string array
 	 * create a stack
@@ -59,14 +61,33 @@ public class CanonicalPath {
 	 * loop the stack
 	 * 
 	 * 
-	
-	
-	*/
-	private String usingStack(String input) {
-		
-		String s = "";
 
-		// TODO Auto-generated method stub
-		return null;
+
+	 */
+	private String usingStack(String input) {
+		String[] split = input.split("/");
+		Stack<String> st = new Stack<String>();
+		for (int i = 0; i < split.length; i++) {
+			if(split[i].trim().equals("..") && !st.isEmpty()) st.pop();
+			else if(!split[i].trim().equals(".") && !split[i].trim().equals("") && !split[i].trim().equals("..")) st.push(split[i].trim());
+		}
+		String output = "";
+		if(st.isEmpty()) return "/";
+		for(String each:st) {
+			output = output+"/"+each;
+		}
+		return "/" + String.join("/", st);
+	}
+
+	private String usingStack2(String input) {
+		String[] split = input.split("/");
+		Stack<String> st = new Stack<String>();
+		for(String each:split) {
+			if(each.equals("")) continue;
+			if(each.equals(".")) continue;
+			if(each.equals("..") && !st.isEmpty()) st.pop();
+			else if(!each.equals("..")) st.push(each);
+		}
+		return "/" + String.join("/", st);
 	}
 }

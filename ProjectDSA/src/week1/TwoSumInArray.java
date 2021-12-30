@@ -51,7 +51,11 @@ public class TwoSumInArray {
 		int target = 10;
 		TwoSumInArray obj = new TwoSumInArray();
 		System.out.println(Arrays.toString(obj.twoSumArray(i, target)));
+		Arrays.copyOf(null, target)
 
+	}
+	public static void main(String[] args) {
+		
 	}
 
 }

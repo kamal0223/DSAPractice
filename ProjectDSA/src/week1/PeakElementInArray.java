@@ -46,6 +46,17 @@ public class PeakElementInArray {
 	}
 	
 	@Test
+	public void test5() {
+		int[] input = {5,4,1};
+		try {
+			Assert.assertEquals(5, bruteForce(input));
+		} catch (Exception e) {
+			System.out.println("the input array cannot be empty");
+		}
+		
+	}
+	
+	@Test
 	public void test2() {
 		int[] input = {1,2,3,4,5,6};
 		try {
@@ -93,7 +104,7 @@ public class PeakElementInArray {
 			if(pointerOne<array[i] && array[i]>pointerTwo) {
 				return array[i];
 			} else {
-				pointerOne++;
+				pointerOne = array[i];
 			}
 			//once iterator reaches last
 		}

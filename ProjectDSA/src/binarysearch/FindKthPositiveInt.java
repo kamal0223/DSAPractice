@@ -20,7 +20,7 @@ TestData set: Positive
 			  Negative
 			  Edge
 Approaches Known: brute force and binary search
-*/
+ */
 public class FindKthPositiveInt {
 
 	@Test //positive
@@ -29,7 +29,7 @@ public class FindKthPositiveInt {
 		int k = 5;
 		Assert.assertEquals(9, usingBinarySearch(input, k));
 	}
-	
+
 	//negative
 	@Test (expected = RuntimeException.class)
 	public void test2() {
@@ -44,22 +44,40 @@ public class FindKthPositiveInt {
 		int k = 5;
 		Assert.assertEquals(11, usingBinarySearch(input, k));
 	}
-	
-	    //declare two int variables low to 0 and high to length-1
-        //iterate when condition satisfy low<=high
-        //declare int mid which is low+high by 2
-        //check if midvalue - mid is less than k, yes then move low to mid+1
-        //check if midValue - mid is greater than k, yes then move high to mid-1
-        //return K+high
-	
+
+	//declare two int variables low to 0 and high to length-1
+	//iterate when condition satisfy low<=high
+	//declare int mid which is low+high by 2
+	//check if midvalue - mid is less than k, yes then move low to mid+1
+	//check if midValue - mid is greater than k, yes then move high to mid-1
+	//return K+high
+
 	private int usingBinarySearch(int[] arr, int k) {
 		if(k == 0) throw new RuntimeException("k cannot be 0");
-        int low = 1, high = arr.length;
-        while(low<=high){
-            int mid = (low+high)/2;
-            if((arr[mid-1]-mid) < k) low = mid+1;
-            else high = mid-1;
-        }
-        return k+high;
+		int low = 1, high = arr.length;
+		while(low<=high){
+			int mid = (low+high)/2;
+			if((arr[mid-1]-mid) < k) low = mid+1;
+			else high = mid-1;
+		}
+		return k+high;
 	}
+
+	private int findKthPositive(int[] arr, int k) {
+		//declare an arrayList of integers
+		//iterate the array from 1 to k
+		//check if i < arr[i]
+		int prevMissingCount = 0;
+		for(int i = 0;i<arr.length;i++){
+			int missingInd = i+1;
+			if((arr[i] - missingInd) >= k){
+				int misser = k-prevMissingCount;
+				if(i == 0) return misser;
+				return arr[i-1]+misser;
+			}
+			prevMissingCount = arr[i] - missingInd;
+		}
+		return arr[arr.length-1]+k-prevMissingCount;
+	}
+
 }

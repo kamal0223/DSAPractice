@@ -18,31 +18,31 @@ public class FirstPositiveInteger {
 	@Test
 	public void test1() {
 		int[] nums = {1,2,0};
-		Assert.assertEquals(3, usingBruteForc(nums));
+		Assert.assertEquals(3, firstMissingPositive(nums));
 	}
 	
 	@Test
 	public void test2() {
 		int[] nums = {3,4,-1,1};
-		Assert.assertEquals(2, usingBruteForc(nums));
+		Assert.assertEquals(2, firstMissingPositive(nums));
 	}
 	
 	@Test
 	public void test3() {
 		int[] nums = {0,2,2,1,1};
-		Assert.assertEquals(3, usingBruteForc(nums));
+		Assert.assertEquals(3, firstMissingPositive(nums));
 	}
 	
 	@Test
 	public void test4() {
 		int[] nums = {3,6,-1,0};
-		Assert.assertEquals(1, usingBruteForc(nums));
+		Assert.assertEquals(1, firstMissingPositive(nums));
 	}
 	
 	@Test
 	public void test5() {
 		int[] nums = {0,-1,3,1};
-		Assert.assertEquals(2, usingBruteForc(nums));
+		Assert.assertEquals(2, firstMissingPositive(nums));
 	}
 	
 	
@@ -93,8 +93,35 @@ public class FirstPositiveInteger {
 		List<Integer> ali =  new ArrayList<Integer>();
 		Collections.min(ali);
 		Collections.max(ali);
+		int[] arr = new int[12];
 		return 0;
 		
 	}
+	
+	 public int firstMissingPositive(int[] nums) {
+	        //iterate the array and find the max value in that array
+	        //declare an array of size max value with initial values filled with 0
+	        //iterate the nums
+	        //if current value is positive
+	        //   pick currentnums value as index there make it as 1
+	        
+	        //iterate the array from 1
+	        //if value at i is 0 then return that index
+	        
+	        int max = 0;
+	        for(int i = 0;i<nums.length;i++){
+	            if(nums[i]>max) max = nums[i];
+	        }
+	        int[] arr = new int[max];
+	         for(int i = 0;i<nums.length;i++){
+	             if(nums[i]>0){
+	                 arr[nums[i]-1] = 1;
+	             }
+	         }
+	        for(int i = 0;i<arr.length;i++){
+	            if(arr[i] == 0) return i+1;
+	        }
+	        return max+1;
+	    }
 	
 }

@@ -6,7 +6,8 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class HappyNumber {
+//https://leetcode.com/problems/happy-number/
+public class HappyNumber_202 {
 	
 	@Test
 	public void test1() {
